@@ -1,13 +1,17 @@
 {
   "name": "quadratic",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": {
     "name": "David Kircos",
     "email": "david@quadratichq.com",
     "url": "https://quadratichq.com"
   },
-  "repository": "https://github.com/quadratichq/quadratic.git",
-  "private": true,
+  "description": "Quadratic HQ",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quadratichq/quadratic.git"
+  },
+  "private": false,
   "dependencies": {
     "@auth0/auth0-react": "^1.11.0",
     "@emotion/react": "^11.7.0",
@@ -32,6 +36,8 @@
     "axios": "^0.24.0",
     "color": "^4.2.3",
     "date-fns": "^2.28.0",
+    "electron-is-dev": "^2.0.0",
+    "electron-updater": "^5.3.0",
     "fontfaceobserver": "^2.3.0",
     "fuzzysort": "^2.0.4",
     "localforage": "^1.10.0",
@@ -47,6 +53,7 @@
     "recoil": "^0.6.0",
     "sass": "^1.56.2",
     "typescript": "^4.4.4",
+    "update-electron-app": "^2.0.1",
     "web-vitals": "^1.0.1"
   },
   "main": "public/electron.js",
@@ -64,7 +71,9 @@
     "prettier": "prettier --write src",
     "eject": "react-scripts eject",
     "dev": "concurrently \"BROWSER=none npm start\" \"electron .\"",
-    "electron": "electron ."
+    "electron": "electron .",
+    "electron:build": "electron-builder build --mac --win --linux --publish never",
+    "electron:publish": "electron-builder build --mac --win --linux --publish always"
   },
   "eslintConfig": {
     "extends": [
@@ -92,7 +101,7 @@
     "@types/lodash.debounce": "^4.0.7",
     "concurrently": "^6.3.0",
     "electron": "^15.3.0",
-    "electron-is-dev": "^2.0.0",
+    "electron-builder": "^23.6.0",
     "fs-extra": "^11.1.0",
     "msdf-bmfont-xml": "^2.7.0",
     "prettier": "^2.8.0",
@@ -100,5 +109,16 @@
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "wait-on": "^6.0.1"
-  }
+  },
+  "build": {
+    "appId": "com.quadratichq.quadratic",
+    "mac": {
+      "category": "public.app-category.productivity"
+    }
+  },
+  "files": [
+    "*.js",
+    "build",
+    "node_modules"
+  ]
 }
